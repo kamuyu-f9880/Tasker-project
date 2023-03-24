@@ -635,3 +635,40 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 1149)
 
 
+Started GET "/" for ::1 at 2023-03-24 14:27:25 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/fred/.rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/fred/.rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.2ms | Allocations: 665)
+Completed 200 OK in 16ms (Views: 6.6ms | ActiveRecord: 0.0ms | Allocations: 5338)
+
+
+Started GET "/" for ::1 at 2023-03-24 14:27:31 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/fred/.rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/fred/.rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.8ms | Allocations: 451)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 1149)
+
+
+Started GET "//users" for ::1 at 2023-03-24 14:28:24 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/favicon.ico" for ::1 at 2023-03-24 14:28:25 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/users" for ::1 at 2023-03-24 14:28:30 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/user" for ::1 at 2023-03-24 14:29:00 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/user"):
+  
+Started GET "/todos" for ::1 at 2023-03-24 14:29:05 +0300
+Processing by TodosController#index as HTML
+Filter chain halted as :session_expired? rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 447)
+
+
