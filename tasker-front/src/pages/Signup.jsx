@@ -1,50 +1,134 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
+import { useNavigate,Link } from "react-router-dom";
 
-function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+function Signup({setIsLoggedIn}){
+   const [formData, setFormData] = useState({
+    firstname: "",
+    lastname:"",
+    username:'',
+    email: "",
+    password: "",
+    
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Submit form data to server here
-  };
+  });
+  let navigate = useNavigate();
 
-  return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+        fetch('https://tasker-api-al07.onrender.com/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            firstname: formData.firstname,
+            lastname: formData.lastname,
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
+        })
+        .then(response => {
+          if (response.ok) {
+            
+            navigate("/");
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });   
+      
+    }
+    return (
+        <div className="contained">
+          <h1 className="text-center mb-4">Sign Up</h1>
+
+          <form onSubmit={handleSubmit} className="row g-3">
+          <center>
+        <div className="form-group mb-2 col-md-6">
+          {/* <label htmlFor="firstname">First Name</label> */}
+          <input
+            type="text"
+            className="form-control"
+            placeholder="First Name"
+            name="firstname"
+            id="firstname"
+            onChange={handleChange}
+            value={formData.firstname}
+            required
+          />
+        </div>
+        <div className="form-group mb-2 col-md-6">
+          {/* <label htmlFor="lastname">Last Name</label> */}
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Last Name"
+            name="lastname"
+            id="lastname"
+            onChange={handleChange}
+            value={formData.lastname}
+            required
+          />
+        </div>
+        <div className="form-group mb-2 col-6 align-items-center">
+          {/* <label htmlFor="username">Username</label> */}
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Username"
+            name="username"
+            id="username"
+            onChange={handleChange}
+            value={formData.username}
+            // required
+          />
+        </div>
+        <div className="form-group mb-2 col-md-6">
+          {/* <label htmlFor="email">Email</label> */}
           <input
             type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            className="form-control"
+            placeholder="Email"
+            name="email"
+            id="email"
+            onChange={handleChange}
+            value={formData.email}
+            required
           />
-        </label>
-        <br />
-        <label>
-          Password:
+        </div>
+        <div className="form-group mb-4 col-md-6">
+          {/* <label htmlFor="password">Password</label> */}
           <input
             type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            className="form-control"
+            placeholder="Password"
+            name="password"
+            id="password"
+            onChange={handleChange}
+            value={formData.password}
+            required
           />
-        </label>
-        <br />
-        <label>
-          Confirm Password:
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
-  );
-}
+        </div>
+        </center>
+        <center><button type="submit" className="btn btn-primary mb-4">Submit</button></center>
 
-export default SignUp;
+        <center>
+        <p className="forgot-password text-right">
+          Already registered <Link to="/">Login?</Link>
+        </p>
+        </center>
+      </form>
+      
+        </div>
+    )
+}
+export default Signup
