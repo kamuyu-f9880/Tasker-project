@@ -1,47 +1,25 @@
-import React, { useState } from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+export default function SignIn () {
+    
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Add your login logic here
-    if (username === 'example' && password === 'password') {
-      alert('Logged in successfully!');
-    } else {
-      setError('Invalid username or password');
-    }
-  };
-
-  return (
-    <div className='login'>
-      <h1>Login Page</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    return (
+        <div class="card">
+            <div class="card-body">
+                <h1>Login here</h1><form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" placeholder="E-mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1" />
+            </div>
+            
+            <Link to="/task"><button type="submit" class="btn btn-primary">Submit</button></Link>
+        </form>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
         </div>
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
-  );
+    )
 }
-
-export default LoginPage;
